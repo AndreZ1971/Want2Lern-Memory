@@ -33,12 +33,5 @@ Das Ziel des Spiels ist es, alle passenden Paare (Frage und Antwort) auf dem Spi
 1. **Download des Spiels:**
    Lade die Dateien herunter oder klone dieses Repository:
    ```bash
-   git clone https://github.com/USERNAME/REPOSITORY.git
-
-
-
-### **Anpassungen**
-- Ersetze `USERNAME/REPOSITORY` durch den tatsächlichen GitHub-Link deines Projekts.
-- Du kannst weitere Funktionen oder spezifische Details hinzufügen, falls nötig.
-
+   git clone https://github.com/AndreZ1971/Want2Lern-Memory.git
 
