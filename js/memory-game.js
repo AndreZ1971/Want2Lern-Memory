@@ -1,6 +1,6 @@
 // Importe aus dem js-Verzeichnis
 import { matheCardValues } from './mathe.js';
-import { deutschCardValues } from './deutsch.js'; 
+import { geschichteCardValues } from './geschichte.js';
 
 const gameboard = document.getElementById("game-board");
 const levelSelect = document.getElementById("level");
@@ -11,6 +11,7 @@ const triesDisplay = document.getElementById("tries");
 
 const cardValues = {
   mathe: matheCardValues,
+  geschichte: geschichteCardValues,
 };
 
 let cards = [];
