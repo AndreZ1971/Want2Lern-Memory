@@ -1,0 +1,127 @@
+:root {
+  --card-value-image: url("images/logo.png");
+  --background-color: #f0f0f5;
+  --card-border-color: #ddd;
+  --card-hover-color: #e0e0e0;
+  --menu-background-color: #ffffff;
+  --menu-border-color: #cccccc;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  text-align: center;
+  background-color: var(--background-color);
+  margin: 0;
+  padding: 0;
+}
+
+#game-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+}
+
+#menu {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px; /* Abstand zwischen den Dropdowns */
+  margin: 20px auto; /* Vertikaler und horizontaler Abstand */
+  max-width: 100%; /* Verhindert Überschreitung des Containers */
+  text-align: center;
+}
+
+select {
+  padding: 8px 12px;
+  font-size: 16px;
+  border: 1px solid var(--menu-border-color);
+  border-radius: 5px;
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+select:hover {
+  border-color: #007bff;
+  box-shadow: 0 2px 6px rgba(0, 123, 255, 0.2);
+}
+
+#controls, #sidebar, #fach-auswahl {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 20px;
+  background-color: var(--menu-background-color);
+  border: 1px solid var(--menu-border-color);
+  border-radius: 5px;
+  padding: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+#controls select, #sidebar select, #fach-auswahl select {
+  padding: 8px;
+  font-size: 16px;
+  border: 1px solid var(--menu-border-color);
+  border-radius: 5px;
+}
+
+#game-board {
+  display: grid;
+  gap: 10px;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  width: 100%;
+  max-width: 500px;
+}
+
+.card {
+  width: 100px;
+  height: 150px;
+  perspective: 1000px;
+  position: relative;
+  transition: transform 0.3s ease;
+}
+
+.card:hover {
+  transform: scale(1.05);
+}
+
+.card div {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  backface-visibility: hidden;
+  border: 1px solid var(--card-border-color);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 24px;
+  border-radius: 10px;
+}
+
+.card-back {
+  background-image: var(--card-value-image);
+  background-size: cover;
+  background-position: center;
+}
+
+.card-front {
+  background: #fff;
+  transform: rotateY(180deg);
+  border-radius: 10px;
+}
+
+.card.flipped .card-back {
+  transform: rotateY(180deg);
+}
+
+.card.flipped .card-front {
+  transform: rotateY(0deg);
+}
+
+#stats {
+  margin-top: 20px;
+  font-size: 18px;
+  color: #333;
+}

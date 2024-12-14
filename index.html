@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Want2Lern Memory</title>
+  <link rel="stylesheet" href="styles.css">
+  <script type="module" src="js/mathe.js"></script>
+  <script type="module" src="js/deutsch.js"></script>
+  <script type="module" src="js/memory-game.js"></script>
+</head>
+<body>
+  <div id="game-container">
+    <h1>Want2Lern Memory</h1>
+
+    <div id="menu">
+      <select id="schulform">
+        <option value="grundschule">Grundschule</option>
+        <option value="hauptschule">Hauptschule</option>
+        <option value="realschule">Realschule</option>
+        <option value="gymnasium">Gymnasium</option>
+      </select>
+      <select id="level">
+        <option value="easy">Leicht</option>
+        <option value="normal">Normal</option>
+        <option value="hard">Schwer</option>
+      </select>
+      <select id="fach">
+        <option value="mathe" selected>Mathe</option>
+        <option value="deutsch">Deutsch</option> 
+        <option value="physik">Physik</option>
+        <option value="geografie">Geografie</option>
+        <option value="chemie">Chemie</option>
+        <option value="geschichte">Geschichte</option>
+        <option value="allgemeinwissen">Allgemeinwissen</option>
+      </select>
+    </div>
+
+    <div id="game-board"></div>
+
+    <div id="stats">
+      <p>Zeit: <span id="time">0</span> Sekunden</p>
+      <p>Versuche: <span id="tries">0</span></p>
+    </div>
+    <div id="controls">
+      <button id="pause">Pause</button>
+      <button id="start" disabled>Start</button>
+    </div>
+  </div>
+  <script src="memory-game.js"></script>
