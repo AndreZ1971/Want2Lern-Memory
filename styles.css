@@ -9,70 +9,86 @@
 
 body {
   font-family: Arial, sans-serif;
-  text-align: center;
-  background-color: var(--background-color);
   margin: 0;
   padding: 0;
-}
-
-#game-container {
+  background-color: #f4f4f4;
+  color: #333;
+  text-align: center;
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: flex-start;
+  height: 100vh;
+}
+
+header {
+  background: #0078d4;
+  color: white;
+  padding: 20px 0;
+  width: 100%;
+  text-align: center;
+}
+
+header h1 {
+  margin: 0;
+}
+
+main {
   padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
 }
 
 #menu {
   display: flex;
   justify-content: center;
-  align-items: center;
-  gap: 20px; /* Abstand zwischen den Dropdowns */
-  margin: 20px auto; /* Vertikaler und horizontaler Abstand */
-  max-width: 100%; /* Verhindert Überschreitung des Containers */
+  gap: 15px;
+  margin-top: 20px;
+  width: 100%;
   text-align: center;
 }
 
-select {
-  padding: 8px 12px;
+select, button {
   font-size: 16px;
-  border: 1px solid var(--menu-border-color);
-  border-radius: 5px;
-  background-color: #fff;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  padding: 10px;
+  margin: 10px 0;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  outline: none;
+  cursor: pointer;
+  width: 100%;
+  max-width: 200px;
+  box-sizing: border-box;
+  text-align: center;
+}
+
+section {
+  margin-bottom: 20px;
+  width: 100%;
+  max-width: 500px;
+  padding: 15px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 select:hover {
-  border-color: #007bff;
+  border-color: #3e3f3f;
   box-shadow: 0 2px 6px rgba(0, 123, 255, 0.2);
-}
-
-#controls, #sidebar, #fach-auswahl {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 15px;
-  margin-bottom: 20px;
-  background-color: var(--menu-background-color);
-  border: 1px solid var(--menu-border-color);
-  border-radius: 5px;
-  padding: 10px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-#controls select, #sidebar select, #fach-auswahl select {
-  padding: 8px;
-  font-size: 16px;
-  border: 1px solid var(--menu-border-color);
-  border-radius: 5px;
 }
 
 #game-board {
   display: grid;
   gap: 10px;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
   width: 100%;
-  max-width: 500px;
+  max-width: 550px;
+  margin: 20px auto;
 }
 
 .card {
@@ -125,3 +141,85 @@ select:hover {
   font-size: 18px;
   color: #333;
 }
+
+#pause, #start {
+  display: flex;
+  justify-content: center;
+  margin: 10px auto;
+}
+
+footer {
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  bottom: 0;
+  width: 100%;
+  text-align: center;
+  padding: 10px;
+  background: #333;
+  color: white;
+  box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+}
+
+footer table {
+  width: auto;
+  margin: 0 auto;
+}
+
+footer td {
+  padding: 5 15px; /* Abstand zwischen den Spalten */
+  text-align: center;
+}
+
+footer span {
+  margin-right: 20px;
+}
+
+#game-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+}
+
+button {
+  background-color: #555657;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  font-size: 14px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+button:hover {
+  background-color: #3e3f3f;
+}
+
+button:disabled {
+  background-color: #cccccc;
+  cursor: not-allowed;
+}
+
+h2 {
+  margin-bottom: 15px;
+}
+
+.popup-content {
+  text-align: center;
+  padding: 20px;
+  border-radius: 8px;
+  background-color: #fff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Ensure menu aligns under the header */
+#menu {
+  margin-top: 15px;
+  justify-content: center;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+

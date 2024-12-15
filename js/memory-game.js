@@ -119,9 +119,7 @@ function checkForMatch() {
 
     if (matchedCards.length === cards.length) {
       stopTimer();
-      setTimeout(() => {
-        alert(`Du hast gewonnen! Du hast ${timeDisplay.textContent} Sekunden gebraucht und ${tries} Versuche benötigt.`);
-      }, 500);
+      showWinPopup();
     }
   } else {
     setTimeout(() => {
@@ -130,6 +128,41 @@ function checkForMatch() {
       flippedCards = [];
     }, 1000);
   }
+}
+
+function showWinPopup() {
+  const popup = document.createElement("div");
+  popup.id = "win-popup";
+  popup.innerHTML = `
+    <div class="popup-content">
+      <h2>Du hast gewonnen!</h2>
+      <p>Zeit: ${timeDisplay.textContent} Sekunden</p>
+      <p>Versuche: ${tries}</p>
+      <button id="save-score">Spielstand speichern</button>
+      <button id="restart-game">Neues Spiel starten</button>
+    </div>
+  `;
+  popup.style.position = "fixed";
+  popup.style.top = "50%";
+  popup.style.left = "50%";
+  popup.style.transform = "translate(-50%, -50%)";
+  popup.style.backgroundColor = "#fff";
+  popup.style.padding = "20px";
+  popup.style.boxShadow = "0 0 10px rgba(0,0,0,0.5)";
+  popup.style.zIndex = "1000";
+
+  document.body.appendChild(popup);
+
+  document.getElementById("save-score").addEventListener("click", saveGameScore);
+  document.getElementById("restart-game").addEventListener("click", () => {
+    document.body.removeChild(popup);
+    updateGameboard();
+  });
+}
+
+function saveGameScore() {
+  alert("Spielstand wurde gespeichert (Simulation)");
+  // Hier kann die tatsächliche Logik für das Speichern implementiert werden
 }
 
 function startTimer() {
