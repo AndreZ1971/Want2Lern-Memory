@@ -1,0 +1,12 @@
+# Datei: .gitignore
+
+# Ignoriere Token und andere sensible Dateien
+js/github-api.js
+secrets.txt
+
+# Node.js oder andere typische Projektabhängigkeiten
+node_modules/
+
+# Temporäre Dateien
+*.log
+*.tmp

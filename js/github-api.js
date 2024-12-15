@@ -1,43 +1,48 @@
-async function addScoreToGitHub(scoreData) {
-  const repo = "andrez1971/Want2Lern-Memory"; // Dein Repository
-  const filePath = "scores.json"; // Pfad zur Datei
-  const branch = "main"; // Hauptbranch
-  const token = "leer"; // Ersetze mit deinem Token
+// Datei: js/github-api.js
+// https://api.github.com/repos/andrez1971/Want2Lern-Memory/contents/scores.json
 
-  const apiUrl = `https://api.github.com/repos/andrez1971/Want2Lern-Memory/contents/scores.json
-`;
+const GITHUB_API_BASE_URL = "https://api.github.com";
+const REPO = "AndreZ1971/Want2Lern-Memory";
+const SCORES_FILE_PATH = "scores.json";
 
-  // Bestehenden Inhalt abrufen
-  const response = await fetch(apiUrl, {
-    headers: {
-      Authorization: `Bearer ${token}`,
-    },
-  });
+export async function saveGameScore(username, scoreData) {
+    const url = `${GITHUB_API_BASE_URL}/repos/${REPO}/contents/${SCORES_FILE_PATH}`;
+    
+    const payload = {
+        message: `Add score for user: ${username}`,
+        content: btoa(JSON.stringify(scoreData)), // Konvertiert Daten in Base64
+    };
 
-  const file = await response.json();
-  const currentScores = response.ok ? JSON.parse(atob(file.content)) : [];
-  currentScores.push(scoreData);
+    const response = await fetch(url, {
+        method: "PUT",
+        headers: {
+            "Authorization": `Bearer ${process.env.GITHUB_TOKEN}`, // Token wird aus Umgebungsvariablen gezogen
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify(payload),
+    });
 
-  const newContent = btoa(JSON.stringify(currentScores, null, 2)); // JSON in Base64 kodieren
+    if (!response.ok) {
+        throw new Error(`Failed to save score: ${response.statusText}`);
+    }
 
-  // Datei aktualisieren
-  const result = await fetch(apiUrl, {
-    method: "PUT",
-    headers: {
-      Authorization: `Bearer ${token}`,
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      message: "Neuer Spielstand hinzugefügt",
-      content: newContent,
-      branch: branch,
-      sha: file.sha, // SHA des aktuellen Inhalts
-    }),
-  });
+    return response.json();
+}
 
-  if (result.ok) {
-    alert("Spielstand erfolgreich gespeichert!");
-  } else {
-    console.error("Fehler beim Speichern des Spielstands:", result.statusText);
-  }
+export async function fetchGameScores() {
+    const url = `${GITHUB_API_BASE_URL}/repos/${REPO}/contents/${SCORES_FILE_PATH}`;
+
+    const response = await fetch(url, {
+        method: "GET",
+        headers: {
+            "Authorization": `Bearer ${process.env.GITHUB_TOKEN}`,
+        },
+    });
+
+    if (!response.ok) {
+        throw new Error(`Failed to fetch scores: ${response.statusText}`);
+    }
+
+    const data = await response.json();
+    return JSON.parse(atob(data.content));
 }

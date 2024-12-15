@@ -1,0 +1,12 @@
+[
+    {
+        "username": "player1",
+        "score": 150,
+        "date": "2024-12-15T10:00:00Z"
+    },
+    {
+        "username": "player2",
+        "score": 200,
+        "date": "2024-12-15T11:00:00Z"
+    }
+]
