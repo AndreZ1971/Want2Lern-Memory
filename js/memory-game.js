@@ -9,6 +9,10 @@ const fachSelect = document.getElementById("fach");
 const timeDisplay = document.getElementById("time");
 const triesDisplay = document.getElementById("tries");
 
+// Sound elements
+//const cardFlipSound = new Audio("./media/click.mp3");
+const winSound = new Audio("./media/gewonnen.mp3");
+
 const cardValues = {
   mathe: matheCardValues,
   geschichte: geschichteCardValues,
@@ -94,6 +98,7 @@ function createGameboard(schulform, level, fach) {
 function flipCard(card) {
   if (card.classList.contains("flipped") || flippedCards.length >= 2) {
     return;
+   
   }
 
   card.classList.add("flipped");
@@ -131,6 +136,40 @@ function checkForMatch() {
 }
 
 function showWinPopup() {
+  // Play win sound
+  winSound.play();
+  // Feuerwerk starten
+  const duration = 15 * 1000; // Feuerwerk dauert 15 Sekunden
+  const animationEnd = Date.now() + duration;
+  const defaults = { startVelocity: 30, spread: 360, ticks: 60, zIndex: 0 };
+
+  function randomInRange(min, max) {
+    return Math.random() * (max - min) + min;
+  }
+
+  const interval = setInterval(function () {
+    const timeLeft = animationEnd - Date.now();
+
+    if (timeLeft <= 0) {
+      return clearInterval(interval);
+    }
+
+    const particleCount = 50 * (timeLeft / duration);
+
+    // Partikel für zwei Bereiche starten
+    confetti(
+      Object.assign({}, defaults, {
+        particleCount,
+        origin: { x: randomInRange(0.1, 0.3), y: Math.random() - 0.2 },
+      })
+    );
+    confetti(
+      Object.assign({}, defaults, {
+        particleCount,
+        origin: { x: randomInRange(0.7, 0.9), y: Math.random() - 0.2 },
+      })
+    );
+  }, 250);
   const popup = document.createElement("div");
   popup.id = "win-popup";
   popup.innerHTML = `
